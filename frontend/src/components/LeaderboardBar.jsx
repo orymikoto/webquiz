@@ -10,7 +10,7 @@ export default function LeaderboardBar({ list = [{ name: '', score: 0 }] }) {
           } `}>
           <p className="font-bold text-amber-400 ">{i + 1}</p>
           <p className=" font-light text-neutral-600 w-24">{e.name}</p>
-          <p className="">{e.score}</p>
+          <p className=" ">{e.score}</p>
         </div>
       ))}
     </div>
