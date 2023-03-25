@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function LeaderboardBar({ list = [{ name: '', score: 0 }] }) {
   return (
-    <div className="bg-white shadow-md flex flex-col rounded-lg p-4 gap-y-2">
+    <div className="bg-white shadow-md md:flex flex-col hidden rounded-lg p-4 gap-y-2 md:min-w-[10rem] md:">
       {list.map((e, i) => (
         <div
           className={`flex items-center h-8 text-neutral-900 text-lg gap-x-2 px-2 rounded-md ${

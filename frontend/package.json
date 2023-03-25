@@ -12,6 +12,7 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "axios": "^1.3.4",
     "moment-timezone": "^0.5.41",
     "react": "^18.2.0",
