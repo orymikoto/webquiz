@@ -10,7 +10,7 @@ export default function HealthBar({ lives = 2, score = 255, soal = 21 }) {
         <p className="text-white font-medium text-[16px]">{score}</p>
       </div>
       <div className="text-white">
-        <p className="font-medium">Soal ke-{soal}</p>
+        <p className="font-medium">Soal ke-{soal + 1}</p>
       </div>
       <div className="flex items-center gap-x-2 ">
         {Array(lives)
