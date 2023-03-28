@@ -10,13 +10,54 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   const [Description, setDescription] = useState(0);
 
   return (
-    <div className="w-full bg-neutral-200 bg-cover min-h-full py-4 ">
-      <NavigationBar />
+    <div className="w-full bg-neutral-200 bg-cover min-h-full ">
+      <div className=" absolute h-[100vh] w-full bg-teal-700">
+        <div className="flex w-[90%] mx-auto justify-between items-center">
+          <div className="my-8 w-[50%] flex-col">
+            <h1 className="text-white text-7xl my-4 font-bebasneue">
+              THIS IS QUIZ WEBSITE FOR LEARNING BOTH ENGLISH AND INDONESIAN LANGUAGES AT THE SAME
+              TIME
+            </h1>
+            <div className="flex my-8 gap-x-4">
+              <Link
+                to={'/quiz'}
+                className="w-[15rem] py-2 px-4 shadow-md bg-amber-400 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-amber-400 rounded-full text-center text-white font-medium text-2xl">
+                Start Quiz
+              </Link>
+              <Link
+                to={'/about'}
+                className="w-[15rem] py-2 px-4 shadow-md bg-neutral-800 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-neutral-800  rounded-full text-center text-white font-medium text-2xl">
+                About
+              </Link>
+            </div>
+          </div>
+          <div className="my-8 w-[50%]">
+            <Swiper
+              modules={[Navigation, Pagination]}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              className="w-full h-[70vh] rounded-xl overflow-hidden my-4"
+              onActiveIndexChange={(e) => {
+                setDescription(e.activeIndex);
+              }}>
+              <SwiperSlide className="w-full bg-neutral-500 bg-center bg-cover bg-[url('/swiper1.jpg')]" />
+              <SwiperSlide className="w-full bg-neutral-500 bg-center bg-cover bg-[url('/swiper2.jpg')]" />
+              <SwiperSlide className="w-full bg-neutral-500 bg-center bg-cover bg-[url('/swiper3.jpg')]" />
+            </Swiper>
+          </div>
+        </div>
+        <div className=" absolute bg-[url('cloud.png')] bg-cover w-[32rem] opacity-70 h-[18rem] right-0 bottom-0 z-10"></div>
+        <div className="absolute bottom-0 right-2 bg-[url('/study.png')] bg-cover min-w-[24rem] min-h-[19rem] z-10"></div>
+      </div>
+
+      {/* <NavigationBar />
       <div className="flex items-center  justify-center">
         <div className="w-[90vw] min-h-[90vh] gap-x-4 text-white rounded-3xl flex items-start my-8 ">
           <div className="bg-white md:w-[80%] w-[100%] min-h-[80vh] rounded-lg flex items-center flex-col">
@@ -25,21 +66,9 @@ export default function HomePage() {
               Language Quiz Web App
             </div>
             <div className="flex flex-col md:flex-row items-center w-[80%] gap-x-4">
-              <Swiper
-                modules={[Navigation, Pagination]}
-                slidesPerView={1}
-                navigation
-                pagination={{ clickable: true }}
-                className="md:min-w-[20rem] md:min-h-[16rem] md:max-w-[20rem] md:max-h-[16rem] w-[90%] h-[16rem] rounded-3xl overflow-hidden my-4"
-                onActiveIndexChange={(e) => {
-                  setDescription(e.activeIndex);
-                }}>
-                <SwiperSlide className="w-[20rem] h-[16rem] bg-neutral-500 bg-center bg-cover bg-[url('/swiper1.jpg')]" />
-                <SwiperSlide className="w-[20rem] h-[16rem] bg-neutral-500 bg-center bg-cover bg-[url('/swiper2.jpg')]" />
-                <SwiperSlide className="w-[20rem] h-[16rem] bg-neutral-500 bg-center bg-cover bg-[url('/swiper3.jpg')]" />
-              </Swiper>
+              
               {Description == 0 ? (
-                <div className="text-neutral-700 text-justify text-sm">
+                <div className="text-neutral-700 text-justify text-md">
                   <p className="md:line-clamp-[12] line-clamp-none ">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde non
                     exercitationem nisi accusamus facilis veritatis officia atque provident beatae?
@@ -56,7 +85,7 @@ export default function HomePage() {
                   </p>
                 </div>
               ) : Description == 1 ? (
-                <div className="text-neutral-700 text-justify text-sm  ">
+                <div className="text-neutral-700 text-justify text-md ">
                   <p className="md:line-clamp-[12] line-clamp-none">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, animi dicta,
                     a porro magni ipsa laborum pariatur laudantium sunt, maiores nemo placeat ex
@@ -72,7 +101,7 @@ export default function HomePage() {
                   </p>
                 </div>
               ) : Description == 2 ? (
-                <div className="text-neutral-700 text-justify text-sm  ">
+                <div className="text-neutral-700 text-justify text-md ">
                   <p className="md:line-clamp-[12] line-clamp-none">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, perspiciatis
                     voluptatem architecto ut sapiente asperiores error illo expedita, voluptate
@@ -102,7 +131,7 @@ export default function HomePage() {
             ]}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
