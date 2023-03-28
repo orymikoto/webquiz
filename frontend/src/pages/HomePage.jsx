@@ -13,26 +13,27 @@ import 'swiper/css/scrollbar';
 import { Link } from 'react-router-dom';
 
 export default function HomePage() {
-  const [Description, setDescription] = useState(0);
+  // const [Description, setDescription] = useState(0);
 
   return (
     <div className="w-full bg-neutral-200 bg-cover min-h-full ">
       <div className=" absolute h-[100vh] w-full bg-teal-700">
+        <NavigationBar />
         <div className="flex w-[90%] mx-auto justify-between items-center">
           <div className="my-8 w-[50%] flex-col">
-            <h1 className="text-white text-7xl my-4 font-bebasneue">
+            <h1 className="text-white 2xl:text-7xl xl:text-5xl my-4 font-bebasneue">
               THIS IS QUIZ WEBSITE FOR LEARNING BOTH ENGLISH AND INDONESIAN LANGUAGES AT THE SAME
               TIME
             </h1>
             <div className="flex my-8 gap-x-4">
               <Link
                 to={'/quiz'}
-                className="w-[15rem] py-2 px-4 shadow-md bg-amber-400 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-amber-400 rounded-full text-center text-white font-medium text-2xl">
+                className="2xl:w-[15rem] xl:w-[12rem] 2xl:py-2 py-1 px-2 shadow-md bg-amber-400 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-amber-400 rounded-full text-center text-white font-medium text-2xl">
                 Start Quiz
               </Link>
               <Link
                 to={'/about'}
-                className="w-[15rem] py-2 px-4 shadow-md bg-neutral-800 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-neutral-800  rounded-full text-center text-white font-medium text-2xl">
+                className="2xl:w-[15rem] xl:w-[12rem] 2xl:py-2 py-1 px-2 shadow-md bg-neutral-800 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-neutral-800  rounded-full text-center text-white font-medium text-2xl">
                 About
               </Link>
             </div>
@@ -43,10 +44,7 @@ export default function HomePage() {
               slidesPerView={1}
               navigation
               pagination={{ clickable: true }}
-              className="w-full h-[70vh] rounded-xl overflow-hidden my-4"
-              onActiveIndexChange={(e) => {
-                setDescription(e.activeIndex);
-              }}>
+              className="w-full h-[70vh] rounded-xl overflow-hidden my-4">
               <SwiperSlide className="w-full bg-neutral-500 bg-center bg-cover bg-[url('/swiper1.jpg')]" />
               <SwiperSlide className="w-full bg-neutral-500 bg-center bg-cover bg-[url('/swiper2.jpg')]" />
               <SwiperSlide className="w-full bg-neutral-500 bg-center bg-cover bg-[url('/swiper3.jpg')]" />
