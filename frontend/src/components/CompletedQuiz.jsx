@@ -20,14 +20,20 @@ export default function CompletedQuiz({ score }) {
         <p className="text-white text-lg">Score: {score}</p>
       </div>
       {Submited ? (
-        <div className="flex items-center cursor-pointer bg-white/20 rounded-md px-4 py-1 my-4 gap-x-2 text-white hover:text-rose-600 duration-200">
-          <AiOutlineReload className="w-8 h-8" />
-          <p className="text-2xl font-comforta ">Play Again?</p>
+        <div className="flex flex-col">
+          <div className=" flex ">
+            <p>Your Score Has Been Submited</p>
+          </div>
+          <div className="flex items-center cursor-pointer bg-white/20 rounded-md px-4 py-1 my-4 gap-x-2 text-white hover:text-rose-600 duration-200">
+            <AiOutlineReload className="w-8 h-8" />
+            <p className="text-2xl font-comforta ">Play Again?</p>
+          </div>
         </div>
       ) : (
         <div className="text-white flex flex-col items-start w-[20rem] my-4">
           <p className="text-sm px-2">Input Your Name</p>
           <input
+            maxLength={30}
             className="bg-transparent outline-none border rounded-md px-2 py-1 w-full placeholder:text-white/60"
             placeholder="Player Name"
             onChange={(e) => setPlayername(e.target.value)}

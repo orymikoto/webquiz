@@ -10,18 +10,20 @@ export default function () {
         <h2 className="md:inline-block hidden">Language Quiz Web App</h2>
       </div>
       <div className="flex gap-x-4">
-        <div className="sm:inline-block hidden  rounded-2xl text-center py-1 font-medium text-white cursor-pointer duration-200 hover:text-amber-400">
+        <Link
+          to={'/'}
+          className="sm:inline-block hidden  rounded-2xl text-center py-1 font-medium text-white cursor-pointer duration-200 hover:text-rose-400">
           Home
-        </div>
+        </Link>
         <div
           onClick={() => {
             setShowscoreboard(!Showscoreboard);
           }}
-          className="sm:inline-block hidden rounded-2xl text-center py-1 font-medium text-white cursor-pointer duration-200 hover:text-amber-400">
+          className="sm:inline-block hidden rounded-2xl text-center py-1 font-medium text-white cursor-pointer duration-200 hover:text-rose-400">
           Scoreboard
         </div>
         <Link
-          to={'/quiz'}
+          to={'/quiz/indonesia-english'}
           className="bg-rose-600 rounded-2xl text-center py-1 w-[7rem] font-medium text-white cursor-pointer duration-200 hover:bg-rose-700">
           Start Quiz
         </Link>
