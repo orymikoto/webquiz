@@ -11,9 +11,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Link } from 'react-router-dom';
+import SelectLanguange from '../components/Popup/SelectLanguange';
 
 export default function HomePage() {
   // const [Description, setDescription] = useState(0);
+  const [Languange, setLanguange] = useState(false);
 
   return (
     <div className="w-full bg-neutral-200 bg-cover min-h-full ">
@@ -26,11 +28,11 @@ export default function HomePage() {
               TIME
             </h1>
             <div className="flex my-8 gap-x-4">
-              <Link
-                to={'/quiz'}
+              <div
+                onClick={() => setLanguange(true)}
                 className="2xl:w-[15rem] xl:w-[12rem] 2xl:py-2 py-1 px-2 shadow-md bg-amber-400 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-amber-400 rounded-full text-center text-white font-medium text-2xl">
                 Start Quiz
-              </Link>
+              </div>
               <Link
                 to={'/about'}
                 className="2xl:w-[15rem] xl:w-[12rem] 2xl:py-2 py-1 px-2 shadow-md bg-neutral-800 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-neutral-800  rounded-full text-center text-white font-medium text-2xl">
@@ -54,6 +56,7 @@ export default function HomePage() {
         <div className=" absolute bg-[url('cloud.png')] bg-cover w-[32rem] opacity-70 h-[18rem] right-0 bottom-0 z-10"></div>
         <div className="absolute bottom-0 right-2 bg-[url('/study.png')] bg-cover min-w-[24rem] min-h-[19rem] z-10"></div>
       </div>
+      {Languange ? <SelectLanguange /> : null}
 
       {/* <NavigationBar />
       <div className="flex items-center  justify-center">
