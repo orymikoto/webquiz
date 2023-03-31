@@ -126,7 +126,7 @@ export default function QuizPageIndtoEng() {
               <HealthBar soal={Soal} score={Score} lives={Lives} language={1} />
               <div className="my-8 w-[35rem] h-[25rem] text-xl text-white text-center flex flex-col items-center ">
                 <div className="px-4 py-1 bg-teal-600 rounded-full">
-                  <h1>Translate to English</h1>
+                  <h1>Translate it to Indonesia</h1>
                 </div>
                 <p className="text-3xl font-thin my-12">{question[Soal].question}</p>
                 <div className="flex items-center justify-center gap-x-2 my-4">
@@ -159,7 +159,7 @@ export default function QuizPageIndtoEng() {
                 </div>
                 {Finish ? null : (
                   <div className=" flex-1 w-[15rem] h-[5rem] flex items-center justify-center ${}">
-                    <Countdown date={Date.now() + 5000} renderer={renderer} />
+                    <Countdown date={Date.now() + 15000} renderer={renderer} />
                   </div>
                 )}
                 {Answer == 1 ? (

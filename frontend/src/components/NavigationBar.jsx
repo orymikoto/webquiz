@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LeaderboardBar from './LeaderboardBar';
 
 export default function () {
   const [Showscoreboard, setShowscoreboard] = useState(false);
@@ -29,18 +30,17 @@ export default function () {
         </Link>
       </div>
       {Showscoreboard ? (
-        <div className="absolute w-64 h-80 top-20 right-6 bg-white rounded-lg z-20"></div>
-      ) : // <LeaderboardBar
-      //   list={[
-      //     { name: 'Mikoto', score: 240 },
-      //     { name: 'Mikail', score: 210 },
-      //     { name: 'Mikoto2', score: 190 },
-      //     { name: 'Mikail2', score: 180 },
-      //     { name: 'Mikoto3', score: 155 },
-      //     { name: 'Mikail3', score: 135 }
-      //   ]}
-      // />
-      null}
+        <LeaderboardBar
+          list={[
+            { name: 'Mikoto', score: 240 },
+            { name: 'Mikail', score: 210 },
+            { name: 'Mikoto2', score: 190 },
+            { name: 'Mikail2', score: 180 },
+            { name: 'Mikoto3', score: 155 },
+            { name: 'Mikail3', score: 135 }
+          ]}
+        />
+      ) : null}
     </div>
   );
 }
