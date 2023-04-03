@@ -26,55 +26,55 @@ export default function ScoreBoard() {
             <tr className="h-8">
               <td className="border border-rose-600 text-center">2</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">260</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
             <tr className="h-8">
               <td className="border border-rose-600 text-center">3</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">260</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
             <tr className="h-8">
               <td className="border border-rose-600 text-center">4</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">240</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
             <tr className="h-8">
               <td className="border border-rose-600 text-center">5</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">230</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
             <tr className="h-8">
               <td className="border border-rose-600 text-center">6</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">210</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
             <tr className="h-8">
               <td className="border border-rose-600 text-center">7</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">210</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
             <tr className="h-8">
               <td className="border border-rose-600 text-center">8</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">210</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
             <tr className="h-8">
               <td className="border border-rose-600 text-center">9</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">180</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
             <tr className="h-8">
               <td className="border border-rose-600 text-center">10</td>
               <td className="border border-rose-600 text-center">Mikoto</td>
-              <td className="border border-rose-600 text-center">270</td>
+              <td className="border border-rose-600 text-center">170</td>
               <td className="border border-rose-600 text-center">2023-03-27 18:30:00</td>
             </tr>
           </tbody>

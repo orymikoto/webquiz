@@ -177,11 +177,23 @@ export default function QuizPageIndtoEng() {
                 ) : Answer == 2 ? (
                   <Timeup className=" my-7 " />
                 ) : null}
-                {Finish ? (
+                {Finish && Lives >= 1 ? (
                   <div
                     onClick={() => nextSoal()}
                     className="bg-teal-600 hover:bg-teal-400 rounded-full cursor-pointer duration-200 px-8 py-1">
                     <p className="text-white">Berikutnya</p>
+                  </div>
+                ) : Finish && Lives == 0 ? (
+                  <div>
+                    <p className="text-white text-3xl">GAME OVER</p>
+                    <div className="flex gap-x-2  cursor-pointer duration-200 px-8 py-1">
+                      <div className="py-1 px-4 bg-white/20 rounded-md hover:bg-white/50 hover:text-pink-700 duration-200">
+                        Finish
+                      </div>
+                      <div className="py-1 px-4 bg-white/20 rounded-md hover:bg-white/50 hover:text-pink-700 duration-200">
+                        Retry
+                      </div>
+                    </div>
                   </div>
                 ) : null}
               </div>
