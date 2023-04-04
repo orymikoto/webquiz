@@ -4,6 +4,7 @@ import Countdown from 'react-countdown';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import CompletedQuiz from '../components/CompletedQuiz';
 import NavigationBar from '../components/NavigationBar';
+import Gameover from '../components/Popup/Gameover';
 
 export default function QuizPageIndtoEng() {
   // Variable untuk menyimpan kebenaran jawaban
@@ -123,6 +124,8 @@ export default function QuizPageIndtoEng() {
         <div className=" absolute w-[35rem] h-[35rem] rounded-2xl flex flex-col justify-end bg-white/50 backdrop-blur-md drop-shadow-xl ">
           {Completed ? (
             <CompletedQuiz score={Score} />
+          ) : Lives == 0 ? (
+            <Gameover />
           ) : (
             <div className="h-[33rem] bg-gradient-to-b from-rose-500/60 to-amber-500/60 rounded-2xl">
               <HealthBar soal={Soal} score={Score} lives={Lives} language={0} />

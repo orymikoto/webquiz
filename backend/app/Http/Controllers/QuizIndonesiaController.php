@@ -12,7 +12,11 @@ class QuizIndonesiaController extends Controller
      */
     public function index()
     {
-        //
+        $quiz = QuizIndonesia::inRandomOrder()->limit(30)->get();
+
+        return response()->json([
+            'data' => $quiz
+        ]);
     }
 
     /**
@@ -56,7 +60,6 @@ class QuizIndonesiaController extends Controller
                 'b_answer' => $value['b']['answer'],
                 'b_correct' => $value['b']['correct'],
             ));
-            # code...
         }
         $quizzes = QuizIndonesia::insert($final_array);
 
@@ -95,6 +98,9 @@ class QuizIndonesiaController extends Controller
      */
     public function destroy(QuizIndonesia $quizIndonesia)
     {
-        //
+        $quizIndonesia->delete();
+        return response()->json([
+            'message' => 'Quiz Deleted'
+        ]);
     }
 }

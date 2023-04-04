@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/quiz/many', [QuizController::class, 'store_many' ]);
-Route::post('/quiz-indonesia/many', [QuizController::class, 'store_many' ]);
+Route::post('/quiz-indonesia/many', [QuizIndonesiaController::class, 'store_many' ]);
 
 Route::apiResource('quiz', QuizController::class );
 Route::apiResource('quiz-indonesia', QuizIndonesiaController::class );
