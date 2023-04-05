@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quiz;
+use App\Models\QuizIndonesia;
 use Illuminate\Http\Request;
 
-class QuizController extends Controller
+class QuizIndonesiaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $quiz = Quiz::inRandomOrder()->limit(30)->get();
-        return response()->json([
-            'data' => $quiz
-        ]) ;
+        //
     }
 
     /**
@@ -23,7 +20,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        // 
+        //
     }
 
     /**
@@ -31,7 +28,7 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        $quiz = Quiz::create([
+        $quiz = QuizIndonesia::create([
             'question' => $request->question,
             'a_answer' => $request->a_answer,
             'a_correct' => $request->a_correct,
@@ -61,7 +58,7 @@ class QuizController extends Controller
             ));
             # code...
         }
-        $quizzes = Quiz::insert($final_array);
+        $quizzes = QuizIndonesia::insert($final_array);
 
         return response()->json([
             'message' => 'all data is inserted',
@@ -72,15 +69,15 @@ class QuizController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Quiz $quiz)
+    public function show(QuizIndonesia $quizIndonesia)
     {
-        // 
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Quiz $quiz)
+    public function edit(QuizIndonesia $quizIndonesia)
     {
         //
     }
@@ -88,30 +85,16 @@ class QuizController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quiz $quiz)
+    public function update(Request $request, QuizIndonesia $quizIndonesia)
     {
-        $quiz->id = $request->id;
-        $quiz->question = $request->question;
-        $quiz->a_answer = $request->a_answer;
-        $quiz->a_correct = $request->a_correct;
-        $quiz->b_answer = $request->b_answer;
-        $quiz->b_correct = $request->b_correct;
-        $quiz->save();
-
-        return response()->json([
-            'message' => 'Data Updated Successfully',
-            'data' => $quiz
-        ]);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Quiz $quiz)
+    public function destroy(QuizIndonesia $quizIndonesia)
     {
-        $quiz->delete();
-        return response()->json([
-            'message' => 'Quiz Deleted'
-        ]);
+        //
     }
 }

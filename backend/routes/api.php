@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuizIndonesiaController;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/quiz/many', [QuizController::class, 'store_many' ]);
+Route::post('/quiz-indonesia/many', [QuizController::class, 'store_many' ]);
 
 Route::apiResource('quiz', QuizController::class );
+Route::apiResource('quiz-indonesia', QuizIndonesiaController::class );
