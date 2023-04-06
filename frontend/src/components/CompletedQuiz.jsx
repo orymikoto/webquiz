@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { BsPatchCheckFill } from 'react-icons/bs';
 import { AiOutlineCheckCircle, AiOutlineReload } from 'react-icons/ai';
+import axios from 'axios';
 
-export default function CompletedQuiz({ score }) {
+export default function CompletedQuiz({ score, languange }) {
   const [Playername, setPlayername] = useState();
   const [Submited, setSubmited] = useState(false);
   const submitScore = () => {
+    axios.post('http://localhost:8000/api/score', {
+      nama: Playername,
+      score: score,
+      languange: languange
+    });
     setSubmited(true);
   };
   return (

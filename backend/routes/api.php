@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuizIndonesiaController;
+use App\Http\Controllers\ScoreController;
 use App\Models\Quiz;
+use App\Models\Score;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +27,4 @@ Route::post('/quiz-indonesia/many', [QuizIndonesiaController::class, 'store_many
 
 Route::apiResource('quiz', QuizController::class );
 Route::apiResource('quiz-indonesia', QuizIndonesiaController::class );
+Route::apiResource('score', ScoreController::class );

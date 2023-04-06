@@ -145,7 +145,7 @@ export default function QuizPageIndtoEng() {
       <div className=" flex justify-center relative items-center w-full h-[90vh]">
         <div className=" absolute w-[35rem] h-[35rem] rounded-2xl flex flex-col justify-end bg-white/50 backdrop-blur-md drop-shadow-xl ">
           {Completed ? (
-            <CompletedQuiz score={Score} />
+            <CompletedQuiz score={Score} languange="English" />
           ) : Lives == 0 ? (
             <Gameover score={Score} setCompleted={setCompleted} />
           ) : (

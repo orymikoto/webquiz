@@ -12,7 +12,10 @@ class ScoreController extends Controller
      */
     public function index()
     {
-        
+        $score = Score::all();
+        return response()->json([
+            'data' => $score
+        ]);
     }
 
     /**
@@ -28,7 +31,16 @@ class ScoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $score = Score::create([
+            'name' => $request->nama,
+            'score' => $request->score,
+            'languange' => $request->language
+        ]);
+
+        return response()->json([
+            'message' => 'Data Stored',
+            'data' => $score
+        ]);
     }
 
     /**
