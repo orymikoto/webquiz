@@ -7,13 +7,28 @@ import NavigationBar from '../components/NavigationBar';
 import axios from 'axios';
 import Loading from '../components/Loading';
 import Gameover from '../components/Popup/Gameover';
+import useSound from 'use-sound';
+
+// Import Suara
+import correctmp3 from '../assets/sound/correct.mp3';
+import quizbgmmp3 from '../assets/sound/quizbgm.mp3';
+import wrongmp3 from '../assets/sound/wrong.mp3';
+import Starting from '../components/Starting';
 
 export default function QuizPageIndtoEng() {
+  // Variable state untuk lagu
+  const [correct] = useSound(correctmp3);
+  const [wrong] = useSound(wrongmp3);
+  const [bgm, { stop }] = useSound(quizbgmmp3, { volume: 0.1 });
+
   // Variable state untuk menyimpan data apakah data masih di load atau belum
   const [isLoading, setLoading] = useState(true);
 
   // Variable untuk menyimpan kebenaran jawaban
   const [Answer, setAnswer] = useState(null);
+
+  // Variable untuk memulai quiz
+  const [Start, setStart] = useState(false);
 
   // Variable untuk mengecek apakah soal sudah terjawab atau belum
   const [Finish, setFinish] = useState(false);
@@ -100,10 +115,12 @@ export default function QuizPageIndtoEng() {
       setAnswer(1); // Mengubah Answer menjadi 0 yang bertujuan untuk menampilkan pesan benar
       setFinish(true); // Mengubah Finish menjadi true sehingga tombol untuk next ke soal berikutnya dapat ditampilkan
       setScore(Score + 10); // Menambahkan Score pengguna
+      correct();
     } else {
       setAnswer(0); // Mengubah Answer menjadi 0 yang bertujuan untuk menampilkan pesan benar
       setFinish(true); // Mengubah Finish menjadi true sehingga tombol untuk next ke soal berikutnya dapat ditampilkan
       setLives(Lives - 1); // Mengurangi nyawa/kesempatan pengguna
+      wrong();
     }
   };
 
@@ -119,8 +136,13 @@ export default function QuizPageIndtoEng() {
     }
   };
 
-  // console.log(question.length, Soal);
+  // fungsi untuk memulai permainan
+  const Playit = () => {
+    bgm();
+    setStart(true);
+  };
 
+  // console.log(question.length, Soal);
   useEffect(() => {
     // Mengambil data dari dari backend menggunakan axios
     axios.get('http://localhost:8000/api/quiz').then((res) => {
@@ -143,11 +165,13 @@ export default function QuizPageIndtoEng() {
     <div className="bg-gradient-to-tr  from-rose-50 to-amber-300 w-[100vw] h-full">
       <NavigationBar />
       <div className=" flex justify-center relative items-center w-full h-[90vh]">
-        <div className=" absolute w-[35rem] h-[35rem] rounded-2xl flex flex-col justify-end bg-white/50 backdrop-blur-md drop-shadow-xl ">
+        <div className=" absolute w-[35rem] h-[35rem] rounded-2xl flex flex-col justify-end bg-white/50 backdrop-blur-md drop-shadow-xl overflow-hidden ">
           {Completed ? (
             <CompletedQuiz score={Score} languange="English" />
           ) : Lives == 0 ? (
-            <Gameover score={Score} setCompleted={setCompleted} />
+            <Gameover score={Score} setCompleted={setCompleted} audioStop={stop} />
+          ) : !Start ? (
+            <Starting playit={Playit} />
           ) : (
             <div className="h-[33rem] bg-gradient-to-b from-rose-500/60 to-amber-500/60 rounded-2xl">
               <HealthBar soal={Soal} score={Score} lives={Lives} language={1} />

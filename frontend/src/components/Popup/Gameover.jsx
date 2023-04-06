@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Gameover({ score, setCompleted }) {
+export default function Gameover({ score, setCompleted, audioStop }) {
   const navigate = useNavigate();
-
   const refreshPage = () => {
     navigate(0);
   };
+  audioStop();
   return (
-    <div className="w-full h-full absolute bg-black/25 flex justify-center items-center">
+    <div className="w-full h-full absolute bg-black/25 flex justify-center items-center ">
       <div className=" flex flex-col rounded-md bg-white p-8 justify-center items-center">
         <p className="text-neutral-500">Score: {score}</p>
         <p className="text-neutral-700 font-comforta text-5xl my-4">GAME OVER</p>
