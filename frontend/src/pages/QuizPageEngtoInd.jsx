@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import HealthBar from '../components/HealthBar';
 import Countdown from 'react-countdown';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import CompletedQuiz from '../components/CompletedQuiz';
 import NavigationBar from '../components/NavigationBar';
+import axios from 'axios';
+import Loading from '../components/Loading';
+import Gameover from '../components/Popup/Gameover';
 
 export default function QuizPageIndtoEng() {
+  // Variable state untuk menyimpan data apakah data masih di load atau belum
+  const [isLoading, setLoading] = useState(true);
+
   // Variable untuk menyimpan kebenaran jawaban
   const [Answer, setAnswer] = useState(null);
 
@@ -61,35 +67,36 @@ export default function QuizPageIndtoEng() {
   };
 
   // Untuk menyimpan data Soal yang akan ditampilkan
-  const question = [
-    {
-      question: 'Kipas Angin',
-      a: { answer: 'Electric Fan', correct: true },
-      b: { answer: 'Fryer', correct: false }
-    },
-    {
-      question: 'Sepeda Motor',
-      a: { answer: 'Motorcycle', correct: true },
-      b: { answer: 'Speed Boat', correct: false }
-    },
-    {
-      question: 'Piring',
-      a: { answer: 'Bowl', correct: false },
-      b: { answer: 'Plate', correct: true }
-    },
-    {
-      question: 'Dompet',
-      a: { answer: 'Pocket', correct: false },
-      b: { answer: 'Wallet', correct: true }
-    }
-  ];
+  const [question, setquestion] = useState([]);
+  // const question = [
+  //   {
+  //     question: 'Kipas Angin',
+  //     a: { answer: 'Electric Fan', correct: true },
+  //     b: { answer: 'Fryer', correct: false }
+  //   },
+  //   {
+  //     question: 'Sepeda Motor',
+  //     a: { answer: 'Motorcycle', correct: true },
+  //     b: { answer: 'Speed Boat', correct: false }
+  //   },
+  //   {
+  //     question: 'Piring',
+  //     a: { answer: 'Bowl', correct: false },
+  //     b: { answer: 'Plate', correct: true }
+  //   },
+  //   {
+  //     question: 'Dompet',
+  //     a: { answer: 'Pocket', correct: false },
+  //     b: { answer: 'Wallet', correct: true }
+  //   }
+  // ];
 
   // Fungsi untuk mengecek apakah jawaban yang diberikan benar atau salah
   const pilihJawaban = (answer) => {
     // console.log(answer);
 
     // jika soal yang dipilih adalah benar
-    if (answer) {
+    if (answer == 1) {
       setAnswer(1); // Mengubah Answer menjadi 0 yang bertujuan untuk menampilkan pesan benar
       setFinish(true); // Mengubah Finish menjadi true sehingga tombol untuk next ke soal berikutnya dapat ditampilkan
       setScore(Score + 10); // Menambahkan Score pengguna
@@ -114,6 +121,24 @@ export default function QuizPageIndtoEng() {
 
   // console.log(question.length, Soal);
 
+  useEffect(() => {
+    // Mengambil data dari dari backend menggunakan axios
+    axios.get('http://localhost:8000/api/quiz').then((res) => {
+      setquestion(res.data.data);
+      console.log(res.data.data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="bg-gradient-to-tr  from-rose-50 to-amber-300 w-[100vw] h-full">
+        <NavigationBar />
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gradient-to-tr  from-rose-50 to-amber-300 w-[100vw] h-full">
       <NavigationBar />
@@ -122,7 +147,7 @@ export default function QuizPageIndtoEng() {
           {Completed ? (
             <CompletedQuiz score={Score} />
           ) : Lives == 0 ? (
-            <Gameover />
+            <Gameover score={Score} setCompleted={setCompleted} />
           ) : (
             <div className="h-[33rem] bg-gradient-to-b from-rose-500/60 to-amber-500/60 rounded-2xl">
               <HealthBar soal={Soal} score={Score} lives={Lives} language={1} />
@@ -135,7 +160,7 @@ export default function QuizPageIndtoEng() {
                   <div
                     onClick={() => {
                       if (!Finish) {
-                        pilihJawaban(question[Soal].a.correct);
+                        pilihJawaban(question[Soal].a_correct);
                       }
                     }}
                     className={`  px-2 py-1 bg-white/25 from-white/25 to-white/25 rounded-full backdrop-blur-sm w-[15rem] ${
@@ -143,12 +168,12 @@ export default function QuizPageIndtoEng() {
                         ? ' hover:bg-gradient-to-br hover:from-teal-400 hover:to-blue-700 cursor-pointer'
                         : null
                     } `}>
-                    {question[Soal].a.answer}
+                    {question[Soal].a_answer}
                   </div>
                   <div
                     onClick={() => {
                       if (!Finish) {
-                        pilihJawaban(question[Soal].b.correct);
+                        pilihJawaban(question[Soal].b_correct);
                       }
                     }}
                     className={` px-2 py-1 bg-white/25 from-white/25 to-white/25 rounded-full backdrop-blur-sm w-[15rem] ${
@@ -156,7 +181,7 @@ export default function QuizPageIndtoEng() {
                         ? ' hover:bg-gradient-to-br hover:from-teal-400 hover:to-blue-700 cursor-pointer'
                         : null
                     }`}>
-                    {question[Soal].b.answer}
+                    {question[Soal].b_answer}
                   </div>
                 </div>
                 {Finish ? null : (
