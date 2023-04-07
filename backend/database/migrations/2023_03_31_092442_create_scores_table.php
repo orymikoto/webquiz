@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('score');
+            $table->integer('score');
             $table->string('language');
             $table->timestamps();
         });

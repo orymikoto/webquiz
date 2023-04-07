@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LeaderboardBar from './LeaderboardBar';
 
-export default function () {
+export default function ({ Score = [] }) {
   const [Showscoreboard, setShowscoreboard] = useState(false);
   return (
-    <div className="flex w-[90vw]  justify-between px-4  items-center mx-auto py-4">
+    <div className="flex w-[90vw] relative justify-between px-4  items-center mx-auto py-4">
       <div className="flex font-medium text-white gap-x-2 items-center text-2xl">
         <div className="min-w-[2.5rem] min-h-[2.5rem] bg-cover bg-[url('/logo.png')]"></div>
         <h2 className="md:inline-block hidden">Language Quiz Web App</h2>
@@ -29,18 +29,7 @@ export default function () {
           Start Quiz
         </Link>
       </div>
-      {Showscoreboard ? (
-        <LeaderboardBar
-          list={[
-            { name: 'Mikoto', score: 240 },
-            { name: 'Mikail', score: 210 },
-            { name: 'Mikoto2', score: 190 },
-            { name: 'Mikail2', score: 180 },
-            { name: 'Mikoto3', score: 155 },
-            { name: 'Mikail3', score: 135 }
-          ]}
-        />
-      ) : null}
+      {Showscoreboard ? <LeaderboardBar list={Score.slice(0, 10)} /> : null}
     </div>
   );
 }

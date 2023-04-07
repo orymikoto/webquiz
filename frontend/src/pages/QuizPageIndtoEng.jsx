@@ -21,6 +21,8 @@ export default function QuizPageIndtoEng() {
   const [wrong] = useSound(wrongmp3);
   const [bgm, { stop }] = useSound(quizbgmmp3, { volume: 0.1 });
 
+  const [Listscore, setListscore] = useState([{ nama: '', score: 0, language: '' }]);
+
   // Variable state untuk menyimpan data apakah data masih di load atau belum
   const [isLoading, setLoading] = useState(true);
 
@@ -122,17 +124,25 @@ export default function QuizPageIndtoEng() {
 
   // console.log(question.length, Soal);
   useEffect(() => {
+    // get Score for navbar
+    axios.get('http://127.0.0.1:8000/api/score').then((res) => {
+      setListscore(res.data.data);
+    });
+
     // Mengambil data dari dari backend menggunakan axios
-    axios.get('http://localhost:8000/api/quiz').then((res) => {
+    axios.get('http://localhost:8000/api/quiz-indonesia').then((res) => {
       setquestion(res.data.data);
-      console.log(res.data.data);
       setLoading(false);
     });
-  }, []);
+
+    return () => {
+      stop();
+    };
+  }, [stop]);
 
   if (isLoading) {
     return (
-      <div className="bg-gradient-to-tr  from-rose-50 to-amber-300 w-[100vw] h-full">
+      <div className="bg-gradient-to-tr from-rose-50 to-amber-300 w-[100vw] h-full">
         <NavigationBar />
         <Loading />
       </div>
@@ -141,7 +151,7 @@ export default function QuizPageIndtoEng() {
 
   return (
     <div className="bg-gradient-to-tr  from-rose-50 to-amber-300 w-[100vw] h-full">
-      <NavigationBar />
+      <NavigationBar Score={Listscore} />
       <div className=" flex justify-center relative items-center w-full h-[90vh]">
         <div className=" absolute w-[35rem] h-[35rem] rounded-2xl flex flex-col justify-end bg-white/50 backdrop-blur-md drop-shadow-xl ">
           {Completed ? (

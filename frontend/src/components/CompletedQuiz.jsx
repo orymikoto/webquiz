@@ -2,16 +2,26 @@ import React, { useState } from 'react';
 import { BsPatchCheckFill } from 'react-icons/bs';
 import { AiOutlineCheckCircle, AiOutlineReload } from 'react-icons/ai';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function CompletedQuiz({ score, languange }) {
   const [Playername, setPlayername] = useState();
   const [Submited, setSubmited] = useState(false);
+  const navigate = useNavigate();
+  const refreshPage = () => {
+    navigate(0);
+  };
   const submitScore = () => {
-    axios.post('http://localhost:8000/api/score', {
-      nama: Playername,
-      score: score,
-      languange: languange
-    });
+    if (!Submited) {
+      axios.post('http://localhost:8000/api/score', {
+        nama: Playername,
+        score: score,
+        language: languange
+      });
+    } else {
+      return;
+    }
+
     setSubmited(true);
   };
   return (
@@ -30,7 +40,9 @@ export default function CompletedQuiz({ score, languange }) {
           <div className=" flex ">
             <p>Your Score Has Been Submited</p>
           </div>
-          <div className="flex items-center cursor-pointer bg-white/20 rounded-md px-4 py-1 my-4 gap-x-2 text-white hover:text-rose-600 duration-200">
+          <div
+            onClick={refreshPage}
+            className="flex items-center cursor-pointer bg-white/20 rounded-md px-4 py-1 my-4 gap-x-2 text-white hover:text-rose-600 duration-200">
             <AiOutlineReload className="w-8 h-8" />
             <p className="text-2xl font-comforta ">Play Again?</p>
           </div>

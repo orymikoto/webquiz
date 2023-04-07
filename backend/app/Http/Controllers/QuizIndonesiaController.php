@@ -90,7 +90,18 @@ class QuizIndonesiaController extends Controller
      */
     public function update(Request $request, QuizIndonesia $quizIndonesia)
     {
-        //
+        $quizIndonesia->id = $request->id;
+        $quizIndonesia->question = $request->question;
+        $quizIndonesia->a_answer = $request->a_answer;
+        $quizIndonesia->a_correct = $request->a_correct;
+        $quizIndonesia->b_answer = $request->b_answer;
+        $quizIndonesia->b_correct = $request->b_correct;
+        $quizIndonesia->save();
+
+        return response()->json([
+            'message' => 'Data Updated Successfully',
+            'data' => $quizIndonesia
+        ]);
     }
 
     /**

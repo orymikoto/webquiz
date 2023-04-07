@@ -12,7 +12,8 @@ class ScoreController extends Controller
      */
     public function index()
     {
-        $score = Score::all();
+        // Dapatkan semua data score urut berdasarkan nilai scorenyanya secara descending
+        $score = Score::orderBy('score', 'DESC')->get();
         return response()->json([
             'data' => $score
         ]);
@@ -31,10 +32,11 @@ class ScoreController extends Controller
      */
     public function store(Request $request)
     {
+        // Menyimpan instance score menggunakan data dari request API
         $score = Score::create([
-            'name' => $request->nama,
+            'nama' => $request->nama,
             'score' => $request->score,
-            'languange' => $request->language
+            'language' => $request->language
         ]);
 
         return response()->json([
@@ -64,7 +66,17 @@ class ScoreController extends Controller
      */
     public function update(Request $request, Score $score)
     {
-        //
+        $score->id = $request->id;
+        $score->nama = $request->nam;
+        $score->score = $request->score;
+        $score->language = $request->language;
+
+        $score->save();
+
+        return response()->json([
+            'message' => 'Data Updated Successfully',
+            'data' => $score
+        ]);
     }
 
     /**
@@ -72,6 +84,9 @@ class ScoreController extends Controller
      */
     public function destroy(Score $score)
     {
-        //
+        $score->delete();
+        return response()->json([
+            'message' => 'Quiz Deleted'
+        ]);
     }
 }
