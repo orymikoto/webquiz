@@ -13,11 +13,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Link } from 'react-router-dom';
 import SelectLanguange from '../components/Popup/SelectLanguange';
+import About from '../components/About/About';
 
 export default function HomePage() {
   // const [Description, setDescription] = useState(0);
   const [Languange, setLanguange] = useState(false);
   const [Scoreboard, setScoreboard] = useState([]);
+  const [Showabout, setShowabout] = useState(true);
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/score').then((res) => {
@@ -41,11 +43,13 @@ export default function HomePage() {
                 className="2xl:w-[15rem] xl:w-[12rem] w-[10rem] 2xl:py-2 py-1 px-2 shadow-md bg-amber-400 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-amber-400 rounded-full text-center text-white font-medium text-2xl">
                 Start Quiz
               </div>
-              <Link
-                to={'/about'}
+              <div
+                onClick={() => {
+                  setShowabout(true);
+                }}
                 className="2xl:w-[15rem] xl:w-[12rem] w-[10rem] 2xl:py-2 py-1 px-2 shadow-md bg-neutral-800 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-neutral-800  rounded-full text-center text-white font-medium text-2xl">
                 About
-              </Link>
+              </div>
             </div>
           </div>
           <div className="my-8 md:w-[50%] w-[90%]">
@@ -65,6 +69,7 @@ export default function HomePage() {
         <div className="hidden md:block absolute bottom-0 right-2 bg-[url('/study.png')] bg-cover min-w-[24rem] min-h-[19rem] z-10"></div>
       </div>
       {Languange ? <SelectLanguange controller={setLanguange} /> : null}
+      {Showabout ? <About controller={setShowabout} /> : null}
     </div>
   );
 }
