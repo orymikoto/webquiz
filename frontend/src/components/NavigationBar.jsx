@@ -24,6 +24,11 @@ export default function ({ Score = [] }) {
           Scoreboard
         </div>
         <Link
+          to={'/tambah-soal'}
+          className="sm:inline-block hidden rounded-2xl text-center py-1 font-medium text-white cursor-pointer duration-200 hover:text-rose-400">
+          Tambah Soal
+        </Link>
+        <Link
           to={'/quiz/indonesia-english'}
           className="bg-rose-600 rounded-2xl text-center py-1 w-[7rem] font-medium text-white cursor-pointer duration-200 hover:bg-rose-700">
           Start Quiz

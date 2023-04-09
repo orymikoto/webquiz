@@ -11,15 +11,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Link } from 'react-router-dom';
 import SelectLanguange from '../components/Popup/SelectLanguange';
 import About from '../components/About/About';
 
 export default function HomePage() {
-  // const [Description, setDescription] = useState(0);
   const [Languange, setLanguange] = useState(false);
   const [Scoreboard, setScoreboard] = useState([]);
-  const [Showabout, setShowabout] = useState(true);
+  const [Showabout, setShowabout] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/score').then((res) => {

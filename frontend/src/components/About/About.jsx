@@ -10,19 +10,19 @@ export default function About({ controller }) {
       <div className="flex w-[40rem] px-4 items-center justify-start gap-x-2">
         <div
           onClick={() => setShowoption(0)}
-          className={`px-4  cursor-pointer py-1 rounded-t-md  duration-200 text-white font-comforta text-xl ${
+          className={`px-4  cursor-pointer py-1 rounded-t-md  duration-200  font-comforta text-xl ${
             Showoption == 0
               ? 'text-amber-500 bg-white'
-              : 'hover:bg-white  bg-white/50 hover:text-amber-500'
+              : 'hover:bg-white text-white  bg-white/50 hover:text-amber-500'
           }`}>
           Tentang
         </div>
         <div
           onClick={() => setShowoption(1)}
-          className={`px-4  cursor-pointer py-1 rounded-t-md  duration-200 text-white font-comforta text-xl ${
+          className={`px-4  cursor-pointer py-1 rounded-t-md  duration-200  font-comforta text-xl ${
             Showoption == 1
               ? 'text-amber-500 bg-white'
-              : 'hover:bg-white bg-white/50 hover:text-amber-500'
+              : 'hover:bg-white text-white bg-white/50 hover:text-amber-500'
           }`}>
           Cara Main
         </div>
