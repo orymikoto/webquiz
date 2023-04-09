@@ -8,18 +8,13 @@ import axios from 'axios';
 import Loading from '../components/Loading';
 import Gameover from '../components/Popup/Gameover';
 import useSound from 'use-sound';
-
-// Import Suara
-import correctmp3 from '../assets/sound/correct.mp3';
-import quizbgmmp3 from '../assets/sound/quizbgm.mp3';
-import wrongmp3 from '../assets/sound/wrong.mp3';
 import Starting from '../components/Starting';
 
 export default function QuizPageIndtoEng() {
   // Variable state untuk lagu
-  const [correct] = useSound(correctmp3);
-  const [wrong] = useSound(wrongmp3);
-  const [bgm, { stop }] = useSound(quizbgmmp3, { volume: 0.1 });
+  const [correct] = useSound('../assets/sound/correct.mp3');
+  const [wrong] = useSound('../assets/sound/wrong.mp3');
+  const [bgm, { stop }] = useSound('../assets/sound/quizbgm.mp3', { volume: 0.1 });
 
   const [Listscore, setListscore] = useState([{ nama: '', score: 0, language: '' }]);
 
