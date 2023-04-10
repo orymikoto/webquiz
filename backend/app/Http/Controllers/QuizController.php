@@ -33,10 +33,10 @@ class QuizController extends Controller
     {
         $quiz = Quiz::create([
             'question' => $request->question,
-            'a_answer' => $request->a_answer,
-            'a_correct' => $request->a_correct,
-            'b_answer' => $request->b_answer,
-            'b_correct' => $request->b_correct
+            'a_answer' => $request->a['answer'],
+            'a_correct' => $request->a['correct'],
+            'b_answer' => $request->b['answer'],
+            'b_correct' => $request->b['correct']
         ]);
 
         return response()->json([
