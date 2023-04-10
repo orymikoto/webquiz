@@ -10,13 +10,38 @@ import axios from 'axios';
 import useSound from 'use-sound';
 
 // Import Suara
+import correctsound from '/sound/correct.mp3';
+import wrongsound from '/sound/wrong.mp3';
+import bgmsound from '/sound/quizbgm.mp3';
 import Starting from '../components/Starting';
 
 export default function QuizPageIndtoEng() {
   // Variable state untuk lagu
-  const [correct] = useSound('/sound/correct.mp3');
-  const [wrong] = useSound('/sound/wrong.mp3');
+  // const [correct] = useSound('/sound/correct.mp3');
+  // const [wrong] = useSound('/sound/wrong.mp3', { volume: 0.5 });
   const [bgm, { stop }] = useSound('/sound/quizbgm.mp3', { volume: 0.1 });
+
+  const correct = () => {
+    const sound = new Audio(correctsound);
+    sound.volume = 0.5;
+    sound.play();
+  };
+  const wrong = () => {
+    const sound = new Audio(wrongsound);
+    sound.volume = 0.5;
+    sound.play();
+  };
+
+  // const [Togglemusic, SetTogglemusic] = useState(false);
+  // const setmusic = () => {
+  //   const ismusicplay = !Togglemusic;
+  //   if (ismusicplay) {
+  //     bgmmusic.play();
+  //   } else {
+  //     bgmmusic.pause();
+  //   }
+  //   SetTogglemusic(ismusicplay);
+  // };
 
   const [Listscore, setListscore] = useState([{ nama: '', score: 0, language: '' }]);
 
@@ -126,15 +151,13 @@ export default function QuizPageIndtoEng() {
       setListscore(res.data.data);
     });
 
-    // Mengambil data dari dari backend menggunakan axios
+    // Mengambil data soal dari dari backend menggunakan axios
     axios.get('http://localhost:8000/api/quiz-indonesia').then((res) => {
       setquestion(res.data.data);
       setLoading(false);
     });
 
-    return () => {
-      stop();
-    };
+    return stop;
   }, [stop]);
 
   if (isLoading) {

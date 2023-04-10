@@ -10,12 +10,22 @@ import Gameover from '../components/Popup/Gameover';
 import useSound from 'use-sound';
 
 // Import Suara
+import correctsound from '/sound/correct.mp3';
+import wrongsound from '/sound/wrong.mp3';
 import Starting from '../components/Starting';
 
 export default function QuizPageIndtoEng() {
   // Variable state untuk lagu
-  const [correct] = useSound('/sound/correct.mp3');
-  const [wrong] = useSound('/sound/wrong.mp3');
+  const correct = () => {
+    const sound = new Audio(correctsound);
+    sound.volume = 0.5;
+    sound.play();
+  };
+  const wrong = () => {
+    const sound = new Audio(wrongsound);
+    sound.volume = 0.5;
+    sound.play();
+  };
   const [bgm, { stop }] = useSound('/sound/quizbgm.mp3', { volume: 0.1 });
 
   const [Listscore, setListscore] = useState([{ nama: '', score: 0, language: '' }]);
