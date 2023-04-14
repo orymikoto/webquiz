@@ -15,8 +15,8 @@ export default function TambahSoal() {
   });
   const [Data, setData] = useState({
     question: '',
-    a: { answer: '', correct: true },
-    b: { answer: '', correct: false }
+    a: { answer: '', correct: 1 },
+    b: { answer: '', correct: 0 }
   });
   const handleBahasa = (e) => {
     // console.log(e.target.value);
@@ -153,10 +153,10 @@ export default function TambahSoal() {
                   }
                   `}>
                     <option disabled> Jawaban Benar </option>
-                    <option value={true} className="text-emerald-700">
+                    <option value={1} className="text-emerald-700">
                       Ya
                     </option>
-                    <option value={false} className="text-red-700">
+                    <option value={0} className="text-red-700">
                       Tidak
                     </option>
                   </select>
@@ -187,10 +187,10 @@ export default function TambahSoal() {
                         : 'text-red-700'
                     } `}>
                     <option disabled> Jawaban Benar </option>
-                    <option value={true} className="text-emerald-700">
+                    <option value={1} className="text-emerald-700">
                       Ya
                     </option>
-                    <option value={false} className="text-red-700">
+                    <option value={0} className="text-red-700">
                       Tidak
                     </option>
                   </select>
