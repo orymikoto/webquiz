@@ -14,8 +14,12 @@ import correctsound from '/sound/correct.mp3';
 import wrongsound from '/sound/wrong.mp3';
 import bgmsound from '/sound/quizbgm.mp3';
 import Starting from '../components/Starting';
+import About from '../components/About/About';
 
 export default function QuizPageIndtoEng() {
+  // Untuk menampilkan popup terkait about
+  const [Showabout, setShowabout] = useState(false);
+
   // Variable state untuk lagu
   // const [correct] = useSound('/sound/correct.mp3');
   // const [wrong] = useSound('/sound/wrong.mp3', { volume: 0.5 });
@@ -147,18 +151,18 @@ export default function QuizPageIndtoEng() {
   // console.log(question.length, Soal);
   useEffect(() => {
     // get Score for navbar
-    axios.get('http://127.0.0.1:8000/api/score').then((res) => {
+    axios.get('https://api.kosaquiz.site/api/score').then((res) => {
       setListscore(res.data.data);
     });
 
     // Mengambil data soal dari dari backend menggunakan axios
-    axios.get('http://localhost:8000/api/quiz-indonesia').then((res) => {
+    axios.get('https://api.kosaquiz.site/api/quiz-indonesia').then((res) => {
       setquestion(res.data.data);
-      setLoading(false);
     });
+    setLoading(false);
 
     return stop;
-  }, [stop]);
+  }, []);
 
   if (isLoading) {
     return (
@@ -171,7 +175,8 @@ export default function QuizPageIndtoEng() {
 
   return (
     <div className="bg-gradient-to-tr  from-rose-50 to-amber-300 w-[100vw] h-full">
-      <NavigationBar Score={Listscore} />
+      {Showabout ? <About controller={setShowabout} /> : null}
+      <NavigationBar Score={Listscore} aboutController={setShowabout} />
       <div className=" flex justify-center relative items-center w-full h-[90vh]">
         <div className=" absolute w-[35rem] h-[35rem] rounded-2xl flex flex-col justify-end bg-white/50 backdrop-blur-md drop-shadow-xl ">
           {Completed ? (
@@ -218,7 +223,7 @@ export default function QuizPageIndtoEng() {
                 </div>
                 {Finish ? null : (
                   <div className=" flex-1 w-[15rem] h-[5rem] flex items-center justify-center ${}">
-                    <Countdown date={Date.now() + 15000} renderer={renderer} />
+                    <Countdown date={Date.now() + 10000} renderer={renderer} />
                   </div>
                 )}
                 {Answer == 1 ? (

@@ -6,7 +6,7 @@ export default function PasswordTambahSoal({ controller, showwarning, warningmes
     setPassword(e.target.value);
   };
   const handleSubmit = () => {
-    if (Password == 'dika123') {
+    if (Password == 'adminku123') {
       controller(true);
     } else {
       warningmessage({

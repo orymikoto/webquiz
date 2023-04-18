@@ -13,7 +13,7 @@ export default function CompletedQuiz({ score, languange }) {
   };
   const submitScore = () => {
     if (!Submited) {
-      axios.post('http://localhost:8000/api/score', {
+      axios.post('https://api.kosaquiz.site/api/score', {
         nama: Playername,
         score: score,
         language: languange

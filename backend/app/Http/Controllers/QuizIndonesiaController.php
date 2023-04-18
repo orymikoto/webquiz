@@ -107,9 +107,9 @@ class QuizIndonesiaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(QuizIndonesia $quizIndonesia)
+    public function destroy(QuizIndonesia $quizIndonesia, Request $request)
     {
-        $quizIndonesia->delete();
+        $quizIndonesia->where('id', $request['id'])->delete();
         return response()->json([
             'message' => 'Quiz Deleted'
         ]);

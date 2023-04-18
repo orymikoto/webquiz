@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/quiz/many', [QuizController::class, 'store_many' ]);
 Route::post('/quiz-indonesia/many', [QuizIndonesiaController::class, 'store_many' ]);
+Route::delete('/quiz', [QuizController::class, 'destroy']);
+Route::delete('/quiz-indonesia', [QuizIndonesiaController::class, 'destroy']);
 
 Route::apiResource('quiz', QuizController::class );
 Route::apiResource('quiz-indonesia', QuizIndonesiaController::class );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import Deskripsi from './Deskripsi';
+import TentangTambahSoal from './TentangTambahSoal';
 import Tutorial from './Tutorial';
 
 export default function About({ controller }) {
@@ -24,7 +25,7 @@ export default function About({ controller }) {
               ? 'text-amber-500 bg-white'
               : 'hover:bg-white text-white bg-white/50 hover:text-amber-500'
           }`}>
-          Cara Main
+          Tentang Tambah Soal
         </div>
       </div>
       <div className="flex flex-col w-[40rem] bg-gradient-to-tr from-amber-500/75 to-rose-700/75 rounded-lg h-[25rem] relative">
@@ -33,7 +34,7 @@ export default function About({ controller }) {
           className="top-2 right-2 absolute hover:bg-white/25 rounded-md duration-200">
           <RxCross2 className="text-white w-8 h-8 cursor-pointer " />
         </div>
-        {Showoption == 0 ? <Deskripsi /> : <Tutorial />}
+        {Showoption == 0 ? <Deskripsi /> : <TentangTambahSoal />}
       </div>
     </div>
   );

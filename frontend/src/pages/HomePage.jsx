@@ -13,14 +13,16 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import SelectLanguange from '../components/Popup/SelectLanguange';
 import About from '../components/About/About';
+import HowToPlay from '../components/About/HowToPlay';
 
 export default function HomePage() {
   const [Languange, setLanguange] = useState(false);
   const [Scoreboard, setScoreboard] = useState([]);
   const [Showabout, setShowabout] = useState(false);
+  const [Showhowtoplay, SetShowtoplay] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/score').then((res) => {
+    axios.get('https://api.kosaquiz.site/api/score').then((res) => {
       setScoreboard(res.data.data);
     });
   });
@@ -28,7 +30,7 @@ export default function HomePage() {
   return (
     <div className="w-full bg-neutral-200 bg-cover min-h-full  ">
       <div className=" absolute h-full w-full bg-teal-700 overflow-y-scroll">
-        <NavigationBar Score={Scoreboard} />
+        <NavigationBar Score={Scoreboard} aboutController={setShowabout} />
         <div className="flex w-[90%] mx-auto justify-between items-center flex-col-reverse md:flex-row">
           <div className="my-8 md:w-[50%] w-[90%] flex flex-col md:items-start items-center">
             <h1 className="text-white 2xl:text-7xl xl:text-5xl text-3xl my-4 font-bebasneue md:text-left text-center">
@@ -43,10 +45,10 @@ export default function HomePage() {
               </div>
               <div
                 onClick={() => {
-                  setShowabout(true);
+                  SetShowtoplay(true);
                 }}
                 className="2xl:w-[15rem] xl:w-[12rem] w-[10rem] 2xl:py-2 py-1 px-2 shadow-md bg-neutral-800 cursor-pointer duration-200 ease-in-out hover:bg-white hover:text-neutral-800  rounded-full text-center text-white font-medium text-2xl">
-                About
+                How To Play
               </div>
             </div>
           </div>
@@ -68,6 +70,7 @@ export default function HomePage() {
       </div>
       {Languange ? <SelectLanguange controller={setLanguange} /> : null}
       {Showabout ? <About controller={setShowabout} /> : null}
+      {Showhowtoplay ? <HowToPlay controller={SetShowtoplay} /> : null}
     </div>
   );
 }

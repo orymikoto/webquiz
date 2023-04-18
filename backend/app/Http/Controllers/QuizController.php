@@ -107,9 +107,9 @@ class QuizController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Quiz $quiz)
+    public function destroy(Quiz $quiz, Request $request)
     {
-        $quiz->delete();
+        $quiz->where('id', $request['id'])->delete();
         return response()->json([
             'message' => 'Quiz Deleted'
         ]);

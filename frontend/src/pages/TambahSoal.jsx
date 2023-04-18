@@ -3,12 +3,15 @@ import NavigationBar from '../components/NavigationBar';
 import axios from 'axios';
 import Warning from '../components/Popup/Warning';
 import PasswordTambahSoal from '../components/PasswordTambahSoal';
+import About from '../components/About/About';
 
 export default function TambahSoal() {
   const [Scoreboard, setScoreboard] = useState([]);
   const [Language, setLanguange] = useState('');
   const [Checkadmin, setCheckadmin] = useState(false);
   const [Showwarning, setShowwarnig] = useState(false);
+  // Untuk menampilkan popup terkait about
+  const [Showabout, setShowabout] = useState(false);
   const [Warningmessage, setWarningemessage] = useState({
     title: '',
     message: ''
@@ -49,7 +52,7 @@ export default function TambahSoal() {
 
     if (Language == 'Indonesia') {
       axios
-        .post('http://localhost:8000/api/quiz-indonesia', Data)
+        .post('https://api.kosaquiz.site/api/quiz-indonesia', Data)
         .then((res) => {
           console.log(res);
           setWarningemessage({
@@ -68,7 +71,7 @@ export default function TambahSoal() {
         });
     } else if (Language == 'English') {
       axios
-        .post('http://localhost:8000/api/quiz', Data)
+        .post('https://api.kosaquiz.site/api/quiz', Data)
         .then((res) => {
           console.log(res);
           setWarningemessage({
@@ -90,7 +93,7 @@ export default function TambahSoal() {
     }
   };
   useEffect(() => {
-    axios.get('http://localhost:8000/api/score').then((res) => {
+    axios.get('https://api.kosaquiz.site/api/score').then((res) => {
       setScoreboard(res.data.data);
     });
   }, []);
@@ -98,7 +101,8 @@ export default function TambahSoal() {
   // console.log(Language);
   return (
     <div className="w-full h-screen bg-gradient-to-tr from-rose-50 to-amber-300 overflow-y-hidden">
-      <NavigationBar Score={Scoreboard} />
+      {Showabout ? <About controller={setShowabout} /> : null}
+      <NavigationBar Score={Scoreboard} aboutController={setShowabout} />
       {Checkadmin ? (
         <div className="flex justify-center relative w-full h-full ">
           <div className="absolute w-[30rem] h-[30rem] my-12 rounded-2xl flex flex-col justify-end bg-white/50 backdrop-blur-md drop-shadow-xl overflow-hidden">
